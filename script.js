@@ -192,13 +192,51 @@ const voteForCategory = async (category) => {
     await new Promise(resolve => setTimeout(resolve, 3000));
 };
 
-// 执行自动化流程
+// Function to log out
+async function logOut() {
+  // Wait for the "LOG OUT" button to appear
+  const logOutButton = await waitForElement('button.chakra-button.AuthNav__login-btn.css-ki1yvo');
+  if (logOutButton) {
+    logOutButton.click();
+    console.log("Logged out successfully.");
+  } else {
+    console.error("LOG OUT button not found");
+  }
+}
+
+// ... existing code ...
+
+// 添加用户输入功能
+const getUserInput = () => {
+  return new Promise((resolve) => {
+    const input = prompt("请输入希望脚本执行的次数：");
+    const times = parseInt(input, 10);
+    if (isNaN(times) || times <= 0) {
+      console.error("请输入一个有效的正整数");
+      resolve(getUserInput());
+    } else {
+      resolve(times);
+    }
+  });
+};
+
+// 执行自动化过程
 (async () => {
   try {
-    await handleReactFormAutomation();
-    // 使用 async/await 依次处理每个类别
-    for (const category of categories) {
+    const executionTimes = await getUserInput();
+    for (let i = 0; i < executionTimes; i++) {
+      console.log(`执行第 ${i + 1} 次`);
+      
+      // 等待一秒以确保页面加载完成
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      await handleReactFormAutomation();
+      // 使用 async/await 顺序处理每个类别
+      for (const category of categories) {
         await voteForCategory(category);
+      }
+      // 完成所有操作后注销
+      await logOut();
     }
   } catch (error) {
     console.error("Automation failed:", error);
