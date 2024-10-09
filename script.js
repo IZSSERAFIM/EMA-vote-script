@@ -1,6 +1,6 @@
 function generateRandomEmail() {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  const domains = ['google.com', 'outlook.com', 'naver.com', 'kakao.com'];
+  const domains = ['gmail.com', 'outlook.com', 'naver.com', 'kakao.com'];
 
   let username = '';
   for (let i = 0; i < 10; i++) {
