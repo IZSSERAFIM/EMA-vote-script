@@ -1,3 +1,16 @@
+function generateRandomEmail() {
+  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const domains = ['google.com', 'outlook.com', 'naver.com', 'kakao.com'];
+
+  let username = '';
+  for (let i = 0; i < 10; i++) {
+    username += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  const domain = domains[Math.floor(Math.random() * domains.length)];
+  return `${username}@${domain}`;
+}
+
 async function handleReactFormAutomation() {
   // 点击 "Add Vote" 按钮
   const addVoteButton = document.querySelector('button[aria-label="Add Vote"]');
