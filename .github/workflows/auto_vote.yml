@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 12 * * *'  # 每天中午 UTC 时间执行一次
   workflow_dispatch:
 
 jobs:
