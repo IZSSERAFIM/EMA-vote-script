@@ -1,0 +1,7 @@
+{
+  "name": "mtv-vote-automation",
+  "version": "1.0.0",
+  "dependencies": {
+    "puppeteer": "^20.7.2"
+  }
+}
