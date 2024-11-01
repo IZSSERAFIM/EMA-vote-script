@@ -17,10 +17,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '22'
 
     - name: Install dependencies
-      run: npm install puppeteer
+      run: npm install
 
     - name: Run auto_script.js
       run: node auto_script.js
